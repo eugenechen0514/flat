@@ -1,36 +1,34 @@
 {
-  "name": "flat",
+  "name": "eugenechen-flat",
   "version": "6.0.1",
-  "type": "module",
   "bin": {
     "flat": "cli.js"
   },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "exports": {
-    ".": {
-      "types": "./index.d.ts",
-      "default": "./index.js"
-    }
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js"
   },
-  "files": [
-    "cli.js",
-    "index.js",
-    "index.d.ts"
-  ],
-  "sideEffects": false,
+  "types": "./dist/esm/index.d.ts",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "test": "node --test && standard cli.js index.js test/test.js"
+    "test": "node --test && standard cli.js index.js test/test.js",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json"
   },
   "license": "BSD-3-Clause",
   "description": "Take a nested Javascript object and flatten it, or unflatten an object with delimited keys",
   "devDependencies": {
-    "standard": "^17.1.0"
+    "standard": "^17.1.0",
+    "typescript": "^5.7.3"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hughsk/flat.git"
+    "url": "https://github.com/eugenechen0514/flat"
   },
   "keywords": [
     "flat",
